@@ -18,3 +18,9 @@ variable "active_directory_username" {
 variable "active_directory_password" {
   description = "The password of the account with permissions to bind machines to the Active Directory Domain"
 }
+
+variable "tags" {
+  description = "A map of tags to add to all resources"
+  type        = map(string)
+  default     = {}
+}

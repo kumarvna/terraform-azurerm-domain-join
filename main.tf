@@ -10,7 +10,7 @@ resource "azurerm_virtual_machine_extension" "join-domain" {
   settings = <<SETTINGS
     {
         "Name": "${var.active_directory_domain}",
-        "OUPath": ${var.ou_path} == null ? "" : ${var.ou_path},
+        "OUPath": ${var.ou_path} != null ? ${var.ou_path} : [""],
         "User": "${var.active_directory_domain}\\${var.active_directory_username}",
         "Restart": "true",
         "Options": "3"
