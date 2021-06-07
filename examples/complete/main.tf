@@ -13,7 +13,7 @@ module "virtual-machine" {
   admin_username            = "azureadmin"
   admin_password            = "P@$$w0rd1234!"
   instances_count           = 1
-  enable_public_ip_address  = true
+  dns_servers               = ["10.1.3.4", "168.63.129.16"]
 
   nsg_inbound_rules = [
     {
@@ -31,12 +31,12 @@ module "virtual-machine" {
 }
 
 module "domain-join" {
-  // source  = "kumarvna/domain-join/azurerm"
-  // version = "1.0.0"
-  source = "../../"
+  source  = "kumarvna/domain-join/azurerm"
+  version = "1.0.0"
 
   virtual_machine_id        = element(concat(module.virtual-machine.windows_virtual_machine_ids, [""]), 0)
   active_directory_domain   = "consoto.com"
+  ou_path                   = "OU=Computers,OU=HQ,OU=Europe,DC=Consoto,DC=COM"
   active_directory_username = "azureadmin"
   active_directory_password = "P@$$w0rd1234!"
 
