@@ -36,7 +36,6 @@ module "domain-join" {
 
   virtual_machine_id        = element(concat(module.virtual-machine.windows_virtual_machine_ids, [""]), 0)
   active_directory_domain   = "consoto.com"
-  ou_path                   = "OU=Computers,OU=HQ,OU=Europe,DC=Consoto,DC=COM"
   active_directory_username = "azureadmin"
   active_directory_password = "P@$$w0rd1234!"
 

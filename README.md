@@ -1,7 +1,9 @@
 # Join the Virtual Machines to existing Active Directory Domain
 
-This terraform module to join the virtual machines to an existing Active Directory domain using a Virtual Machine Extension.
+Terraform module to join the virtual machines to an existing Active Directory domain using a Virtual Machine Extension.
 
+OU Path to keep your virtual machines to desired Organization Unit. By default, all virtual machines go to Computers OU. You can manage by setting up variable to `ou_path = "OU=Computers,OU=HQ,OU=Europe,DC=Consoto,DC=COM"` a valid OU string.
+  
 ## Module Usage
 
 ```hcl
@@ -43,7 +45,6 @@ module "domain-join" {
 
   virtual_machine_id        = element(concat(module.virtual-machine.windows_virtual_machine_ids, [""]), 0)
   active_directory_domain   = "consoto.com"
-  ou_path                   = "OU=Computers,OU=HQ,OU=Europe,DC=Consoto,DC=COM"
   active_directory_username = "azureadmin"
   active_directory_password = "P@$$w0rd1234!"
 
@@ -99,7 +100,6 @@ Originally created by [Kumaraswamy Vithanala](mailto:kumarvna@gmail.com)
 
 ## Other resources
 
-* [Windows Virtual Machine](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/)
 * [Active Directory Setup](https://cloudblogs.microsoft.com/industry-blog/en-gb/technetuk/2016/06/08/setting-up-active-directory-via-powershell/)
 * [Join a Windows Server virtual machine to an Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/join-windows-vm-template)
 * [Virtual Machine Extensions](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/features-windows#:~:text=Azure%20virtual%20machine%20(VM)%20extensions,VM%20extension%20can%20be%20used.)
