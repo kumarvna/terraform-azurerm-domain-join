@@ -3,10 +3,17 @@
 Terraform module to join the virtual machines to an existing Active Directory domain using a Virtual Machine Extension.
 
 OU Path to keep your virtual machines to desired Organization Unit. By default, all virtual machines go to Computers OU. You can manage by setting up variable to `ou_path = "OU=Computers,OU=HQ,OU=Europe,DC=Consoto,DC=COM"` a valid OU string.
+
+> **[NOTE]**
+> **This module now supports the meta arguments including `providers`, `depends_on`, `count`, and `for_each`.**
   
 ## Module Usage
 
 ```hcl
+provider "azurerm" {
+  features {}
+}
+
 module "virtual-machine" {
   source  = "kumarvna/virtual-machine/azurerm"
   version = "2.1.0"

@@ -5,6 +5,10 @@ This terraform module to join the virtual machines to an existing Active Directo
 ## Module Usage
 
 ```hcl
+provider "azurerm" {
+  features {}
+}
+
 module "virtual-machine" {
   source  = "kumarvna/virtual-machine/azurerm"
   version = "2.1.0"
