@@ -7,6 +7,10 @@ OU Path to keep your virtual machines to desired Organization Unit. By default, 
 ## Module Usage
 
 ```hcl
+provider "azurerm" {
+  features {}
+}
+
 module "virtual-machine" {
   source  = "kumarvna/virtual-machine/azurerm"
   version = "2.1.0"

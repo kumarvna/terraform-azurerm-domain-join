@@ -6,9 +6,9 @@ module "virtual-machine" {
   source  = "kumarvna/virtual-machine/azurerm"
   version = "2.1.0"
 
-  resource_group_name       = "rg-shared-westeurope-02"
+  resource_group_name       = "rg-shared-westeurope-01"
   location                  = "westeurope"
-  virtual_network_name      = "vnet-shared-hub-westeurope-002"
+  virtual_network_name      = "vnet-shared-hub-westeurope-001"
   subnet_name               = "snet-management"
   virtual_machine_name      = "win-machine"
   os_flavor                 = "windows"
@@ -35,9 +35,8 @@ module "virtual-machine" {
 }
 
 module "domain-join" {
-//  source  = "kumarvna/domain-join/azurerm"
- // version = "1.0.0"
-source = "../../"
+  source  = "kumarvna/domain-join/azurerm"
+  version = "1.0.0"
 
   virtual_machine_id        = element(concat(module.virtual-machine.windows_virtual_machine_ids, [""]), 0)
   active_directory_domain   = "consoto.com"
