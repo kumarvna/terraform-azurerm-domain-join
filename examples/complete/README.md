@@ -43,7 +43,7 @@ module "virtual-machine" {
 
 module "domain-join" {
   source  = "kumarvna/domain-join/azurerm"
-  version = "1.0.0"
+  version = "1.1.0"
 
   virtual_machine_id        = element(concat(module.virtual-machine.windows_virtual_machine_ids, [""]), 0)
   active_directory_domain   = "consoto.com"
